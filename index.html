@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+	<title>Flickr Search</title>
+	<link rel="stylesheet" type="text/css" href="bower_components/angular-material/angular-material.min.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:400,500,700,400italic"><!-- font-family: 'Roboto', sans-serif;-->
+</head>
+<body ng-app="flickrApp" ng-controller="ListController" layout="column" layout-align="top center">
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <span class="md-flex">Flickr Search</span>
+        </div>
+    </md-toolbar>
+
+    <md-content layout="column" layout-align="center center">
+        <div class="app-content">
+
+            <form ng-submit="search()">
+                <div ng-show="!isSearching">
+                    <md-text-float label="Search for" class="long" ng-model="searchTerm"></md-text-float>
+                </div>
+                <md-progress-circular ng-if="isSearching" md-mode="indeterminate"></md-progress-circular>
+            </form>
+            
+            <md-card ng-repeat="picture in results.photos.photo">
+                <img ng-src="https://farm{{picture.farm}}.staticflickr.com/{{picture.server}}/{{picture.id}}_{{picture.secret}}_b.jpg" alt="" class="md-card-image"/>
+                <md-card-content>
+                    <h3>{{picture.title}}</h3>
+                </md-card-content>
+
+            </md-card>
+            
+        </div>
+    </md-content>
+
+	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular-aria/angular-aria.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular-material/angular-material.min.js"></script>
+	<script type="text/javascript" src="bower_components/hammerjs/hammer.min.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+
+</body>
+</html>

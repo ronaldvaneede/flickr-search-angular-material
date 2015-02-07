@@ -1,0 +1,15 @@
+.app-content {
+    width: 100%;
+}
+
+form {
+    padding: 10px 30px 20px 25px;
+}
+
+md-input-group.long > input {
+    width: 100%;
+}
+
+md-card {
+    margin: 0 30px 25px 30px;
+}
