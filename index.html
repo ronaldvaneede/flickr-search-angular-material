@@ -16,27 +16,35 @@
         </div>
     </md-toolbar>
 
-    <md-content layout="column" layout-align="center center">
+    <md-content layout-align="center center">
         <div class="app-content">
-
-            <form ng-submit="search()">
-                <div ng-show="!isSearching">
-                    <md-text-float label="Search for" class="long" ng-model="searchTerm"></md-text-float>
-                </div>
+            <form novalidate ng-submit="search()">
+				<md-input-container>
+					<label>Your API Key</label>
+					<input type="text" class="long" ng-model="apiKey"/>
+				</md-input-container>
+				<md-input-container>
+					<label>Search for</label>
+					<input type="text" class="long" ng-model="searchTerm" />
+				</md-input-container>
+				<button>Search</button>
                 <md-progress-circular ng-if="isSearching" md-mode="indeterminate"></md-progress-circular>
             </form>
             
-            <md-card ng-repeat="picture in results.photos.photo">
-                <img ng-src="https://farm{{picture.farm}}.staticflickr.com/{{picture.server}}/{{picture.id}}_{{picture.secret}}_b.jpg" alt="" class="md-card-image"/>
-                <md-card-content>
-                    <h3>{{picture.title}}</h3>
-                </md-card-content>
-            </md-card>
-            
+			<div ng-repeat="picture in results.photos.photo">
+				<md-card>
+					<img ng-src="https://farm{{picture.farm}}.staticflickr.com/{{picture.server}}/{{picture.id}}_{{picture.secret}}_b.jpg" 
+						 alt="" class="md-card-image"/>
+					<md-card-content>
+						<h3>{{picture.title}}</h3>
+					</md-card-content>
+				</md-card>
+			</div>
         </div>
     </md-content>
 
 	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular-cookies/angular-cookies.min.js"></script>
 	<script type="text/javascript" src="bower_components/angular-aria/angular-aria.min.js"></script>
 	<script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
 	<script type="text/javascript" src="bower_components/angular-material/angular-material.min.js"></script>
